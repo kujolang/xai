@@ -18,8 +18,20 @@ export XAI_API_KEY=your-key
 
 ```kujo
 from xai import create_client, client_chat
+
 client := create_client({})
-result := client_chat(client, {"model":"grok-4.6","messages":[{"role":"user","content":"Hello from Kujo!"}]})
+request := {
+    "model": "grok-4.6",
+    "messages": [
+        {
+            "role": "user",
+            "content": "Hello from Kujo!"
+        }
+    ]
+}
+
+result := client_chat(client, request)
+
 print(result["data"]["choices"][0]["message"]["content"])
 ```
 
