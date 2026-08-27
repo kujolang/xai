@@ -1,16 +1,45 @@
 # Kujo xAI Provider
 
-Native xAI OpenAI-compatible chat client with xAI reasoning, tools, vision, and an AI SDK adapter.
+[![Version](https://img.shields.io/badge/version-0.1.2-black)](https://github.com/kujolang/xai/releases/tag/v0.1.2)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
+[![built with Kujo](https://img.shields.io/badge/built%20with-Kujo-white.svg)](https://github.com/kujolang/kujo)
+
+xAI Grok support for Kujo through the compatible HTTP API, with xAI-specific controls preserved natively.
+
+## Install
 
 ```bash
-kujo package-add github:kujolang/xai@v0.1.0
+kujo run /path/to/kennel/kennel.kujo --interpreter -- add github:kujolang/xai@v0.1.2 --alias xai
+kujo run /path/to/kennel/kennel.kujo --interpreter -- install
 export XAI_API_KEY=your-key
 ```
 
+## 30-second quick start
+
 ```kujo
 from xai import create_client, client_chat
-c := create_client({})
-r := client_chat(c, {"model":"grok-4.6","messages":[{"role":"user","content":"Hello"}],"reasoning_effort":"high"})
+client := create_client({})
+result := client_chat(client, {"model":"grok-4.6","messages":[{"role":"user","content":"Hello from Kujo!"}]})
+print(result["data"]["choices"][0]["message"]["content"])
 ```
 
-Native use preserves xAI response fields, reasoning controls, tools, and usage metadata. `xai_provider()` supplies normalized AI SDK chat and streaming semantics. Tests are offline and credential-free.
+## Native API
+
+The native layer preserves xAI response fields, reasoning controls, tools, multimodal inputs, and usage. xAI also maintains a separate SDK/protocol surface; this package's HTTP path is intentionally explicit.
+
+## AI SDK integration
+
+`xai_provider({"model": "grok-4.6"})` supplies normalized chat and streaming semantics through the compatible driver.
+
+## Authentication and security
+
+Set `XAI_API_KEY`. Remote endpoints require HTTPS; embedded credentials, header injection, and secret leakage are rejected.
+
+## Testing and documentation
+
+```bash
+bash scripts/release_quality_gate.sh
+bash scripts/verify_installed_package.sh
+```
+
+The default gate is deterministic and offline. See [docs/](docs/) for implementation and Contract v1 evidence.
