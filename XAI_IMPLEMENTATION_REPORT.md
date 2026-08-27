@@ -42,7 +42,7 @@ Pure descriptor/decoder hooks with no network I/O or policy bypass. Two determin
 
 ## Clean-Room Install / Installed Consumer Smoke
 
-Pending immutable tag validation.
+Passed with Kujo v1.0.2, including immutable Kennel add/install/reinstall/validate and installed consumer smoke with `KUJO_MODULE_PATH` unset.
 
 ## Live Validation
 
