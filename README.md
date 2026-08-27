@@ -9,7 +9,10 @@ xAI Grok support for Kujo through the compatible HTTP API, with xAI-specific con
 ## Install
 
 ```bash
-kujo run /path/to/kennel/kennel.kujo --interpreter -- add github:kujolang/xai@v0.1.2 --alias xai
+kujo run /path/to/kennel/kennel.kujo \
+  --interpreter \
+  -- add github:kujolang/xai@v0.1.2 \
+  --alias xai
 kujo run /path/to/kennel/kennel.kujo --interpreter -- install
 export XAI_API_KEY=your-key
 ```
